@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員界面 - 創建用戶</title>
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+
+</head>
+<body>
+    <section class="main">
+        <div class="bottom-grid">
+            <div class="logo">
+                <h1> <a href="#"> 創建新用戶</a></h1>
+            </div>
+        </div>
+        <!-- register -->
+        <div class="w3lhny-register">
+            <div class="iconhny">
+               <span class="fa fa-user-plus"></span>
+             </div>
+            <form id="createUserForm" action="#" method="post" class="register-form">
+                <fieldset>
+                    <div class="form">
+                        <div class="form-row">
+                            <span class="fa fa-user"></span>
+                            <input type="text" id="username" class="form-text" placeholder="使用者名稱" required="">
+                        </div>
+                        <div class="form-row">
+                            <span class="fa fa-envelope"></span>
+                            <input type="email" id="email" class="form-text" placeholder="電子郵件" required="">
+                        </div>
+                        <div class="form-row button-login">
+                            <button type="submit" class="btn btn-login">創建</button>
+                        </div>
+                    </div>
+                </fieldset>
+                </form>
+				<a href="/logout" id="logout" class="create-account">登出</a>
+                <span class="create-account">Or Continue With!</span>
+        </div>
+        
+    </section>
+
+    <script>
+        // 檢查用戶是否是管理員
+        fetch('/check-admin')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.is_admin) {
+                    document.body.innerHTML = '<h1>無權訪問</h1>';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking admin status:', error);
+            });
+
+        document.getElementById('createUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            
+            fetch('/admin/create-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === '用戶創建成功') {
+                    alert('用戶創建成功！');
+                    // 清空表單
+                    document.getElementById('username').value = '';
+                    document.getElementById('email').value = '';
+                } else if (data.message === '用戶已存在') {
+                    alert('用戶已存在！');
+                } 
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('message').textContent = '發生錯誤，請稍後再試';
+            });
+        });
+    </script>
+</body>
+</html>
