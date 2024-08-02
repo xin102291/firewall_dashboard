@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCU 防火牆儀表板 - OTP 驗證</title>
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+    
+</head>
+<body>
+    <section class="main">
+        <div class="bottom-grid">
+            <div class="logo">
+                <h1> <a href="#"> FCU 防火牆儀表板</a></h1>
+            </div>
+        </div>
+        <!-- register -->
+        <div class="w3lhny-register">
+            <div class="iconhny">
+               <span class="fa fa-user-plus"></span>
+             </div>
+            <form id="otpForm" action="#" id="loginForm" method="post" class="register-form">
+                <fieldset>
+                    <div class="form">
+                        
+                        <div class="form-row">
+                            <span class="fa fa-envelope"></span>
+                            
+                            <input type="text" id="otp" class="form-text" placeholder="輸入 OTP" required="">
+                        </div>
+						<div class="form-row">
+                            <span class="fa fa-lock"></span>
+                            
+                            <input type="password" id="newPassword" class="form-text" placeholder="設置新密碼" required="">
+                        </div>
+                        <div class="form-row">
+                            <span class="fa fa-lock"></span>
+                            
+                            <input type="password" id="confirmPassword" class="form-text" placeholder="確認新密碼" required="">
+                        </div>
+                        <div class="form-row button-login">
+                            <button type="submit" class="btn btn-login">驗證 OTP</button>
+                        </div>
+                    </div>
+                </fieldset>
+                </form>
+
+                <span class="create-account">Or Continue With!</span>
+        </div>
+        
+    </section>
+    <script>
+
+        // 處理 OTP 驗證邏輯
+        document.getElementById('otpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const otp = document.getElementById('otp').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('新密碼和確認密碼不匹配');
+                return;
+            }
+
+            // 從 URL 參數中獲取 email
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            
+            // 發送驗證請求到後端
+            fetch('/verify-otp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, otp, new_password: newPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === '密碼設置成功，請使用新密碼登入') {
+                    alert('OTP 驗證成功，密碼已更新');
+                    window.location.href = '/'; // 重定向到登入頁面
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('驗證過程中發生錯誤，請稍後再試');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <title>FCU 防火牆儀表板 - 登入</title>
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+
+</head>
+
+<body>
+    <section class="main">
+        <div class="bottom-grid">
+            <div class="logo">
+                <h1> <a href="#">FCU 防火牆儀表板</a></h1>
+            </div>
+        </div>
+        <!-- register -->
+        <div class="w3lhny-register">
+            <div class="iconhny">
+               <span class="fa fa-user-plus"></span>
+             </div>
+            <form action="#" id="loginForm" method="post" class="register-form">
+                <fieldset>
+                    <div class="form">
+                        
+                        <div class="form-row">
+                            <span class="fa fa-envelope"></span>
+                            
+                            <input type="email" id="email" class="form-text" placeholder="Email Address" required="">
+                        </div>
+                        <div class="form-row">
+                            <span class="fa fa-lock"></span>
+                            
+                            <input type="password" id="password" class="form-text" placeholder="Password" required="">
+                        </div>
+                        <div class="form-row button-login">
+                            <button type="submit" class="btn btn-login">登入</button>
+                        </div>
+						<button class="btn btn-login" id="firstLoginBtn">首次登入</button>
+                    </div>
+                </fieldset>
+                </form>
+
+                <span class="create-account">Or Continue With!</span>
+        </div>
+        
+    </section>
+
+    <script>
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            login();
+        });
+
+        document.getElementById('firstLoginBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            checkFirstLogin();
+        });
+
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === '首次登入，請使用首次登入按鈕') {
+                    alert('這是您的首次登入，請使用首次登入按鈕。');
+                } else if (data.message === '登入成功') {
+                    alert('登入成功！');
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        console.error('No redirect URL provided');
+                    }
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('登入過程中發生錯誤，請稍後再試。');
+            });
+        }
+
+        function checkFirstLogin() {
+            const email = document.getElementById('email').value;
+            
+            fetch('/check-first-login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.is_first_login) {
+                    alert('驗證碼已發送到您的郵箱。');
+                    window.location.href = '/verify-otp?email=' + encodeURIComponent(email);
+                } else {
+                    alert('這不是首次登入，請使用正常登入流程。');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('檢查首次登入時發生錯誤，請稍後再試。');
+            });
+        }
+
+    </script>
+</body>
+</html>
