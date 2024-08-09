@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template,session
+from flask import Blueprint, jsonify, request, render_template,session,redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db, mail
 from .SQL import User
@@ -6,6 +6,7 @@ from flask_mail import Message
 import random
 import string
 from .decorators import *
+
 
 bp = Blueprint('main', __name__)
 
@@ -149,8 +150,17 @@ def check_admin():
     return jsonify({'is_admin': is_admin})
 
 @bp.route('/home')
-def home():
-    return render_template('home.html')
+def home():    
+    user_email = session['user_email'] # 獲取使用者的電子郵件 
+    #print(f"User email from session: {user_email}")  
+    
+    user = User.query.filter_by(email=user_email).first() #查詢使用者資料
+    
+    
+    #print(f"User name from database: {user.name}")  
+    
+    return render_template('home.html', name=user.name) #將使用者名字傳給home.html使用
+
 
 
 
