@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS user (
 -- 為了提高查詢效率，我們可以在 email 列上添加索引
 CREATE INDEX idx_user_email ON user(email);
 
-INSERT INTO user (email, password, is_first_login, is_admin) VALUES
-('admin@example.com','placeholder', FALSE,FALSE);
+INSERT INTO user (name,email, password, is_first_login, is_admin) VALUES
+("仙女",'admin@example.com','placeholder', FALSE,FALSE);
 
 
 
