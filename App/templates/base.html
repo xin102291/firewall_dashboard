@@ -246,7 +246,7 @@
             <div class="head">
                 <h1>FCU</h1>
             </div>
-            <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/4548/4548184.png" alt="icon"></a>
+            <a href="{{ url_for('main.home') }}"><img src="https://cdn-icons-png.flaticon.com/128/4548/4548184.png" alt="icon"></a>
             <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/4556/4556960.png" alt="icon"></a>
             <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/3524/3524968.png" alt="icon"></a>
             <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/1827/1827499.png" alt="icon"></a>
@@ -274,11 +274,11 @@
                 </div>
             </div>
             <div class="category">
-                <button>類別</button>
-                <button>類別</button>
-                <button>類別</button>
-                <button>類別</button>
-                <button>類別</button>
+                <a href="{{ url_for('main.threatLevel') }}"><button>攻擊類型</button></a>
+                <a href="{{ url_for('main.threatLevel') }}"><button>威脅級別</button></a>
+                <a href="{{ url_for('main.threatLevel') }}"><button>高級別類別</button></a>
+                <a href="{{ url_for('main.threatLevel') }}"><button>低級別類別</button></a>
+                <a href="{{ url_for('main.web') }}"><button>網頁分析</button></a>
                 <button>類別</button>
                 <button>類別</button>
                 <button>類別</button>
