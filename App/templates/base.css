@@ -1,0 +1,20 @@
+/* 自定義圖片效果 */
+.sidebar img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sidebar img:hover {
+    transform: scale(1.1);
+}
+
+/* 調整按鈕樣式 */
+.btn-outline-light {
+    border-radius: 30px;
+    padding: 0.5rem 1.5rem;
+}
+
+body {
+    background-color: #4f5154;
+    color: #ffffff;
+}
