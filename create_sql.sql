@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE INDEX idx_user_email ON user(email);
 
 INSERT INTO user (name,email, password, is_first_login, is_admin) VALUES
-("仙女",'admin@example.com','placeholder', FALSE,FALSE);
+("fan",'d1225414@o365.fcu.edu.tw','placeholder', FALSE,FALSE);
 
 
 
