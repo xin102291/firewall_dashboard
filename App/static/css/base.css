@@ -1,0 +1,256 @@
+/* Widget的樣式 */
+.selector-for-some-widget {
+    box-sizing: content-box;
+}
+
+/* 基本樣式設定 */
+body {
+    margin: 5;
+    font-family: Arial, sans-serif;
+    background-color: #4f5154;
+    color: #ffffff;
+}
+
+/* 整體容器 */
+.container {
+    display: flex;
+    height: 100%;
+}
+
+/* 側邊欄 */
+.sidebar {
+    /* 之前的樣式 */
+    width: 100px;
+    min-width: 100px; /* 設置最小寬度以避免側邊欄過小 */
+    height: auto;
+    background-color: #23272a; /* 深灰色背景 */
+    padding: 20px; /* 內邊距 */
+    box-sizing: border-box; /* 包含內邊距和邊框 */
+    display: flex; /* 使用Flexbox布局 */
+    flex-direction: column; /* 垂直排列內容 */
+    align-items: center; /* 水平居中 */
+    border-right: 2px solid #ccc; /* 右邊的邊框，增加分隔感 */
+    position: sticky; /* 使側邊欄在滾動時保持固定 */
+    top: 0; /* 在視窗上方固定 */
+    height: 100vh; /* 設置高度為視窗的高度，讓它充滿整個側邊 */
+}
+
+
+.sidebar img {
+    align-items: center;
+    width: 100%;
+    min-width: 70px;
+    max-width: 1000px;
+    height: auto;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sidebar img:hover {
+    transform: scale(1.1); /* 滑鼠移動到按鈕時，會稍微變大 */
+}
+
+/* 主要內容 */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-sizing: border-box; /* padding 和 border 都會包含在元素的總寬度和高度內，不會額外增加尺寸*/
+    overflow-y: auto;/*內容超過容器的高度，自動顯示滾動條*/
+}
+
+/* 標頭 */
+.head {
+    text-align: center;
+}
+
+/* 標頭樣式 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #23272a;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    height: 80px;
+}
+
+.header .left-section {
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+}
+
+.header .left-section div {
+    margin-right: 20px;
+}
+
+.header .left-section img {
+    width: 20%;
+    height: 5%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.header .right-section button {
+    margin-left: 10px;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    background-color: #23272a;
+    color: white;
+    font-size: clamp(12px, 3vw, 15px);
+    border: 2px solid #e7e7e7;
+    white-space: nowrap;
+    min-width: 90px;
+    flex-shrink: 0;
+}
+
+.header .right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header .right-section button:hover {
+    background-color: rgb(111, 106, 106);
+}
+
+.header .right-section a {
+    text-decoration: none;
+    color: white;
+}
+
+/* 日期和時間 */
+.date-time {
+    text-align: left;
+    margin: 20px 0;
+    font-size: 1.2em;
+    padding-right: 5px;
+}
+
+/* 搜索和篩選 */
+.search-filter {
+    display: flex;
+    background-color: #23272a;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    font-size: clamp(13px, 2vw, 18px);
+}
+
+.search-filter .search-section {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.search-filter input {
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+.search-filter button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #23272a;
+    color: white;
+    border: 2px solid #e7e7e7;
+    font-size: clamp(12px, 2vw, 16px);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* 類別按鈕 */
+.category {
+    background-color: #23272a;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    margin-bottom: 20px;
+}
+
+.category a {
+    flex: 1 1 calc(12% - 4px); /* 調整按鈕的寬度 */
+    margin: 2px; /* 減少間距 */
+    padding: 10px; /* 維持高度 */
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    background-color: #23272a;
+    color: white;
+    border: 2px solid #e7e7e7;
+    font-size: clamp(12px, 2vw, 16px);
+    min-width: 100px; /* 調整最小寬度以適應新的寬度 */
+    transition: background-color 0.3s, color 0.3s; /* 增加過渡效果 */
+}
+
+@media (max-width: 1000px) {
+    .category button {
+        flex: 1 1 calc(25% - 8px); /* 針對小屏幕調整按鈕寬度 */
+    }
+}
+
+.category button:hover {
+    background-color: rgb(111, 106, 106);
+}
+
+
+/* 最新更新區域 */
+.latest-updates {
+    background-color: #23272a;
+    display: flex;
+    flex-direction: column;
+    height: 450px; /* 設定固定高度 */
+    justify-content: flex-start;
+    width: 100%;
+    flex-grow: 1;
+    border: 2px solid #e7e7e7;
+    padding: 15px;
+    overflow-y: auto; /* 當內容超出時顯示垂直滾動條 */
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* 更新項目樣式 */
+.update-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #40444b;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.update-item .text-content {
+    flex-grow: 1;
+}
+
+.update-item .timestamp {
+    color: #b9bbbe;
+}
+
+/* 自訂背景顏色 */
+.bg-custom {
+    background-color: #40444b;
+}

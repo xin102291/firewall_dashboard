@@ -1,0 +1,27 @@
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.chart-item {
+    flex: 1;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #23272a;
+    padding: 60px;
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.chart-item h3 {
+    color: white;
+    margin-right: 20px; /* 調整標題和圖表之間的間距 */
+}
+
+canvas {
+    width: 250px;
+    height: auto;
+}
