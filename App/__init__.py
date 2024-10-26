@@ -11,12 +11,12 @@ def create_app():
 
     # 配置
     app.config['SECRET_KEY'] = os.urandom(24)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://pqc:123456@localhost/test'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/test'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = '102291cindy@gmail.com'
+    app.config['MAIL_USERNAME'] = 'D1225414@o365.fcu.edu.tw'
     app.config['MAIL_PASSWORD'] = 'aejv sjvm ksya nphq'
 
     db.init_app(app)
