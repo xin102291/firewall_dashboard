@@ -11,7 +11,7 @@ def create_app():
 
     # 配置
     app.config['SECRET_KEY'] = os.urandom(24)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/test'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://web:123456@localhost/web'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
