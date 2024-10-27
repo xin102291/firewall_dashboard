@@ -7,7 +7,7 @@ db = SQLAlchemy()
 mail = Mail()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__,static_url_path='/static')
 
     # 配置
     app.config['SECRET_KEY'] = os.urandom(24)
