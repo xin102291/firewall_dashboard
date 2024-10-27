@@ -1,12 +1,16 @@
 import sys
 import os
 
-# 设置环境变量
-activate_this = '/var/www/firewall_dashboard/venv/bin/activate'
-with open(activate_this) as file_:
-    exec(file_.read(), dict(__file__=activate_this))
+# 設置專案目錄
+project_home = '/var/www/firewall_dashboard'
+if project_home not in sys.path:
+    sys.path.insert(0, project_home)
 
-# 添加 Flask 应用路径
-sys.path.insert(0, '/var/www/firewall_dashboard')
+# 設置虛擬環境的 Python 路徑
+activate_this = '/var/www/firewall_dashboard/venv/bin/activate_this.py'
+exec(open(activate_this).read(), {'__file__': activate_this})
 
-from main import app as application  
+# 將 FLASK_APP 指向你的 Flask 主檔案
+os.environ['FLASK_APP'] = 'main.py'
+
+from main import app as application
