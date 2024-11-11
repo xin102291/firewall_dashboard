@@ -9,14 +9,14 @@
     <!--導入css檔-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 </head>
-<body class="bg-dark text-white"><!--網頁背景變深色，文字變白色-->
-    <div class="container-fluid"><!-- 容器可以讓內容在不同設備（如桌面、平板、手機）上都能適應視口的寬度，提供響應式設計。-->
-        <div class="row"><!--讓容器內的「列」自動在同一水平行上排列，每個列都會在同一行中顯示，而不會上下重疊。-->
+<body class="bg-dark text-white">
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-2 sidebar">
-                <div class="head text-center"><!--文字置中-->
+                <div class="head text-center">
                     <h1>FCU</h1>
                 </div>
-                <div class="d-flex flex-column align-items-center"><!--垂直排列，並且圖案置中-->
+                <div class="d-flex flex-column align-items-center">
                     <a href="{{ url_for('main.home') }}"><img src="https://cdn-icons-png.flaticon.com/128/4548/4548184.png" alt="icon" class="img-fluid"></a>
                     <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/4556/4556960.png" alt="icon" class="img-fluid"></a>
                     <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/3524/3524968.png" alt="icon" class="img-fluid"></a>
@@ -30,15 +30,25 @@
                         <p class="h5">{{ name }}</p>
                     </div>
                     <div class="right-section d-flex">
+                        <div class="me-2">
+                            <select class='slt' name="年" id="year-select"></select>
+                        </div>
+                        <div class="me-2">
+                            <select class='slt' name="月" id="month-select"></select>
+                        </div>
+                        <div class="me-2">
+                            <select class='slt' name="日" id="day-select"></select>
+                        </div>
+                        <a href="{{ url_for('main.logout') }}" target="_blank" class="btn btn-outline-light me-2 ">查詢</a>
                         <a href="{{ url_for('main.logout') }}" target="_blank" class="btn btn-outline-light me-2">個人設定</a>
                         <a href="{{ url_for('main.logout') }}" target="_blank" class="btn btn-outline-light">登出</a>
                     </div>
                 </div>
-                <div class="search-filter d-flex justify-content-between align-items-center bg-custom p-2 my-1">
+                <div class="date d-flex justify-content-between align-items-center bg-custom p-2 my-1">
                     <div class="date-time" id="date-time"></div>
-                    <div class="search-section d-flex">
-                        <input type="text" class="form-control me-2" placeholder="Search...">
-                        <button class="btn btn-outline-light m-1">篩選</button>
+                    <div class="danger-index-box">
+                        <h3 class="danger-index-title">危險指數</h3>
+                        <p class="danger-index-value" id="dangerIndexValue">47/100</p>
                     </div>
                 </div>
                 <div class="category d-flex flex-wrap justify-content-around bg-custom p-1 mb-3">
@@ -46,10 +56,8 @@
                     <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">威脅級別</a>
                     <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">高級別類別</a>
                     <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">低級別類別</a>
-                    <a href="{{ url_for('main.web') }}" class="btn btn-outline-light m-1">網頁分析</a>
-                    <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">類別</a>
-                    <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">類別</a>
-                    <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">類別</a>
+                    <a href="{{ url_for('main.threatLevel1') }}" class="btn btn-outline-light m-1">網頁分析</a>
+                    <a href="{{ url_for('main.detailedData') }}" class="btn btn-outline-light m-1">詳細數據</a>
                 </div>
                 {% block content %}
                 {% endblock %}

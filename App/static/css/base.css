@@ -1,15 +1,50 @@
+/* 使用 CSS transition 平滑過渡 */
+.element {
+    transition: all 0.3s ease;
+}
+
+/* 或使用 opacity 配合 visibility */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
 /* Widget的樣式 */
 .selector-for-some-widget {
     box-sizing: content-box;
 }
 
 /* 基本樣式設定 */
-body {
+/*body {
     margin: 5;
-    font-family: Arial, sans-serif;
+    font-family: monospace;
     background-color: #4f5154;
     color: #ffffff;
+}*/
+
+html * {
+    font-family: MyCustomFont !important;
 }
+/* 中文用微軟正黑 */
+@font-face {
+    font-family: MyCustomFont;
+    src: local("cwTeXYen"), sans-serif,serif;
+    unicode-range: U+4E00-9FFF;
+}
+/* 英文用 Segoe UI */
+@font-face {
+    font-family: MyCustomFont;
+    src:  local(Segoe UI);
+    unicode-range: U+00-024F;
+}
+
 
 /* 整體容器 */
 .container {
@@ -34,7 +69,6 @@ body {
     top: 0; /* 在視窗上方固定 */
     height: 100vh; /* 設置高度為視窗的高度，讓它充滿整個側邊 */
 }
-
 
 .sidebar img {
     align-items: center;
@@ -81,7 +115,7 @@ body {
 .header .left-section {
     display: flex;
     align-items: center;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .header .left-section div {
@@ -95,20 +129,6 @@ body {
     cursor: pointer;
 }
 
-.header .right-section button {
-    margin-left: 10px;
-    padding: 1em 2em;
-    border: none;
-    border-radius: 60px;
-    cursor: pointer;
-    background-color: #23272a;
-    color: white;
-    font-size: clamp(12px, 3vw, 15px);
-    border: 2px solid #e7e7e7;
-    white-space: nowrap;
-    min-width: 90px;
-    flex-shrink: 0;
-}
 
 .header .right-section {
     display: flex;
@@ -116,14 +136,14 @@ body {
     gap: 10px;
 }
 
-.header .right-section button:hover {
-    background-color: rgb(111, 106, 106);
-}
 
-.header .right-section a {
+
+.header .right-section a,button {
     text-decoration: none;
     color: white;
 }
+
+
 
 /* 日期和時間 */
 .date-time {
@@ -134,44 +154,52 @@ body {
 }
 
 /* 搜索和篩選 */
-.search-filter {
+.date {
     display: flex;
     background-color: #23272a;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+    align-items: center; /* 確保內容垂直居中 */
+    padding: 10px 20px; /* 調整 padding 來改變高度 */
     box-sizing: border-box;
     border: 1px solid #ffffff;
     font-size: clamp(13px, 2vw, 18px);
+    height: 70px; /* 設置固定高度 */
 }
 
-.search-filter .search-section {
+.date .danger-index-box {
+    color: white; /* 白色文字 */
+    border-radius: 10px; /* 圓角 */
+    padding: 5px 10px; /* 內邊距 */
+    text-align: center; /* 文字置中 */
+    max-width: 250px; /* 調整最大寬度，使框框更寬 */
+    margin-left: auto; /* 靠右顯示 */
+    height: 50px; /* 設定固定高度 */
+    display: flex; /* 使用 flex 來垂直居中內容 */
+    align-items: center; /* 垂直居中 */
+    white-space: nowrap; /* 防止換行 */
+    border: 3px solid #ffffff;
+    border-style:groove;
+}
+
+.date .danger-index-title {
+    font-size: 1em; /* 標題字型大小 */
+    margin: 0; /* 去除邊距以保持一致性 */
+}
+
+.date .danger-index-value {
+    font-size: 1.2em; /* 調整數字字型大小 */
+    font-weight: bold; /* 加粗 */
+    margin-left: 5px; /* 增加標題和數值之間的間距 */
+    margin: 0; /* 去除邊距 */
+}
+
+
+
+.right-section .search-section{
     display: flex;
     align-items: center;
     flex-shrink: 0;
-}
-
-.search-filter input {
-    padding: 3%;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    flex: 1;
-    min-width: 0;
-    font-size: clamp(14px, 2vw, 16px);
-}
-
-.search-filter button {
-    padding: 10px 30px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: #23272a;
-    color: white;
-    border: 2px solid #e7e7e7;
-    font-size: clamp(12px, 2vw, 16px);
-    white-space: nowrap;
-    flex-shrink: 0;
+    height: calc(2 / 3 * 100%); /* 讓 search-section 高度與父容器一致 */
 }
 
 /* 類別按鈕 */
@@ -208,10 +236,15 @@ body {
     }
 }
 
+@media (max-width: 600px) {
+    .category a {
+        flex: 1 1 calc(25% - 10px); /* 每行顯示四個按鈕 */
+    }
+}
+
 .category button:hover {
     background-color: rgb(111, 106, 106);
 }
-
 
 /* 最新更新區域 */
 .latest-updates {
@@ -253,4 +286,32 @@ body {
 /* 自訂背景顏色 */
 .bg-custom {
     background-color: #40444b;
+}
+
+.dashHead {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.slt {
+    padding: 9px;
+    font-size: 16px;
+    border-radius:5px;
+}
+
+/*
+攻擊類型
+威脅級別
+高級別類別
+低級別類別
+網頁分析
+
+
+*/
+
+@media (max-width: 768px) { /* 根據需求調整此寬度 */
+    .right-section a {
+        display: none; /* 隱藏按鈕 */
+    }
 }

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center"> 
+      <div class="col-12 col-md-4 mb-3 px-3">
+          <div class="box">
+              <h4>Log Source</h4>
+              <h5>N/aSeries @ PA-5250 140.134.3.111</h5>
+              <span>835391</span>
+          </div>
+      </div>
+      <div class="col-12 col-md-4 mb-3 px-3"> 
+          <div class="box">
+              <h4>Bytes Sent</h4>
+              <h5>N/A</h5>
+              <span>835391</span>
+          </div>
+      </div>
+      <div class="col-12 col-md-4 mb-3 px-3">
+          <div class="box">
+              <h4>Bytes Received</h4>
+              <h5>N/A</h5>
+              <span>835391</span>
+          </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-12 col-md-6 mb-3">
+          <div class="chart-item">
+              <h3 class="chart-title">動作</h3>
+              <canvas id="myPolarChart1"></canvas>  
+          </div>
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+          <div class="chart-item">
+              <h3 class="chart-title">網頁類型</h3>
+              <canvas id="myPolarChart2"></canvas>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3">
+        <div class="chart-item">
+            <h3 class="chart-title">嚴重程度</h3>
+            <canvas id="myHorizontalBar1Chart"></canvas> 
+        </div>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+        <div class="chart-item">
+            <h3 class="chart-title">發源地</h3>
+            <canvas id="myHorizontalBar2Chart"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<!-- 引入CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/threatLevel1.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/threatLevel1.js') }}"></script>
+{% endblock %}
