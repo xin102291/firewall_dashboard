@@ -2,12 +2,73 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="latest-updates">
-    <div class="update-item" data-timestamp="2023-07-30T12:00:00Z">
-        <div class="text-content">
-            <div>發布消息：請注意，下午有重要會議，請準時參加。</div>
-            <div class="timestamp">2023年8月12日 9:08</div>
+
+<div class="container">
+    <div class="dashHead">
+        <div class="row">
+            <div class="col-3 d-flex justify-conetent-center"><label class="lbt">時間點</label></div>
+            <div class="col-3 d-flex justify-conetent-center">
+                <select name='年'>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            <div class="col-2 d-flex justify-conetent-center">
+                <select name='月'>
+                    <option value="1">1月</option>
+                    <option value="2">2月</option>
+                </select>
+            </div>
+            <div class="col-2 d-flex justify-conetent-center">
+                <select name="日">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="col-2 d-flex justify-conetent-center"><button type="submit" class="btn btn-src">查詢</button>
+            </div>
         </div>
     </div>
+
+    <div class="dashMaddle">
+        <div class="row">
+        <div class="col-8">
+            <div class="box_chart">
+                <canvas id="chartEn"></canvas>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="box_chart">
+                    <canvas id="chartEc"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashFooter">
+        <div class="row">
+            <div class="col-6">
+                <div class="box_chart">
+                    <canvas id="chartOn"></canvas>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="box_chart">
+                    <canvas id="chartU"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/web.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/web.js') }}"></script>
 {% endblock %}
