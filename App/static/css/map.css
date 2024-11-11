@@ -1,0 +1,22 @@
+/* style.css */
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px; /* 根據需要調整 */
+    margin: 0 auto;
+}
+
+.map-container img {
+    width: 100%;
+    height: auto;
+}
+
+.building {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
