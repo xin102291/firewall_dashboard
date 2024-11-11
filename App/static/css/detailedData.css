@@ -1,0 +1,57 @@
+/* container 容器的樣式 */
+.container {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    width: 100%; /* 確保容器占滿寬度 */
+}
+
+/* 表格滾動容器，設置水平與垂直滾動 */
+.table-wrapper {
+    overflow: auto; /* 允許水平方向和垂直方向的滾動 */
+    -webkit-overflow-scrolling: touch;
+    width: 100%; /* 讓wrapper占滿容器寬度 */
+    max-height: 500px; /* 設定最大高度，當內容過多時顯示滾動條 */
+    margin: 0; /* 取消左右邊距 */
+    padding: 0 10px; /* 設定左右內邊距，讓表格與容器邊界有較小的距離 */
+}
+
+/* 表格樣式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* 讓表格自動調整列寬 */
+    margin: 0; /* 取消表格左右邊距 */
+}
+
+/* th 和 td 文字不換行 */
+th, td {
+    border: 1px solid #ffffff;
+    padding: 8px;
+    text-align: left;
+    min-width: 100px; /* 設定最小寬度，避免內容擠壓 */
+    white-space: nowrap; /* 防止文字換行 */
+}
+
+/* 根據螢幕寬度調整 */
+@media screen and (max-width: 768px) {
+    .table-wrapper {
+        margin: 0; /* 在小螢幕上取消左右間距 */
+        padding: 0 5px; /* 在小螢幕上減少左右內邊距 */
+    }
+    
+    th, td {
+        min-width: 80px; /* 在小螢幕上減少最小寬度 */
+        padding: 10px; /* 在小螢幕上減少padding */
+    }
+}
+
+/* 表格標題樣式 */
+th {
+    background-color: #333333;
+}
+
+/* 隔行變色 */
+tr:nth-child(even) {
+    background-color: #444444;
+}

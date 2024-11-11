@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="chart-container">
-    <div class="chart-item">
-        <h3 style="color:white;">攻擊類型分佈</h3>
-        <canvas id="pieChart"></canvas>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 chart-item">
+            <h3 style="color:white;">攻擊類型分佈</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="col-md-6 chart-item">
+            <h3 class="chart-title">威脅級別</h3>
+            <canvas id="barChart"></canvas>
+        </div>
     </div>
-    <div class="chart-item">
-        <h3 class="chart-title">威脅級別</h3>
-        <canvas id="barChart"></canvas>
-    </div>
-</div>
-
-<div class="chart-container">
-    <div class="chart-item">
-        <h3 class="chart-title">高級別類別分佈</h3>
-        <canvas id="highLevelPieChart"></canvas>
-    </div>
-    <div class="chart-item">
-        <h3 class="chart-title">低級別類別分佈</h3>
-        <canvas id="lowLevelPieChart"></canvas>
+    <div class="row">
+        <div class="col-md-6 chart-item">
+            <h3 class="chart-title">高級別類別分佈</h3>
+            <canvas id="highLevelPieChart"></canvas>
+        </div>
+        <div class="col-md-6 chart-item">
+            <h3 class="chart-title">低級別類別分佈</h3>
+            <canvas id="lowLevelPieChart"></canvas>
+        </div>
     </div>
 </div>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/threatLevel.css') }}">
 
-<!-- 引入 Chart.js 庫 -->
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- 引入 chartjs-plugin-datalabels 插件 -->
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 <script src="{{ url_for('static', filename='js/threatLevel.js') }}"></script>

@@ -29,13 +29,11 @@ function createChart(elementId, chartType, labels, data, backgroundColors, label
                         boxHeight: 15,
                     }
                 },
-                // 啟用 datalabels 插件並設定格式
                 datalabels: {
                     color: 'white',
                     font: {
                         size: 12
                     },
-                    // 根據圖表類型設置數據標籤位置
                     align: function(context) {
                         return context.chart.config.type === 'bar' ? 'end' : 'center';
                     },
@@ -44,15 +42,9 @@ function createChart(elementId, chartType, labels, data, backgroundColors, label
                     },
                     formatter: function(value, context) {
                         if (context.chart.config.type === 'bar') {
-                            // 長條圖顯示數量
                             return value;
-                        } else {
-                            // 圓餅圖顯示百分比
-                            const dataset = context.chart.data.datasets[0].data;
-                            const total = dataset.reduce((acc, val) => acc + val, 0);
-                            const percentage = (value / total * 100).toFixed(2);
-                            // 只顯示超過5%的數據
-                            return percentage > 5 ? percentage + '%' : '';
+                        } else if (context.chart.config.type === 'pie') {
+                            return ''; // 圓餅圖不顯示數據標籤
                         }
                     }
                 }
@@ -75,6 +67,7 @@ function createChart(elementId, chartType, labels, data, backgroundColors, label
         plugins: [ChartDataLabels]
     });
 }
+
 
 // 圓餅圖 1
 createChart(
@@ -115,3 +108,4 @@ createChart(
     ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(99, 255, 132, 1)', 'rgba(235, 54, 162, 1)', 'rgba(86, 255, 206, 1)', 'rgba(192, 75, 192, 1)'],
     '低級別類別分佈'
 );
+

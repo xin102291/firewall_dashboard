@@ -1,0 +1,46 @@
+.container-fluid {
+    margin-top: 5px;
+}
+
+.box {
+    background-color: #515559;
+    margin: 3px 0; /* 垂直間距 */
+    padding: 15px 20px;
+    border: 3px solid #ffffff;
+    border-style:groove;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.chart-item {
+    background-color: #515559;
+    border: 3px solid #ffffff;
+    border-style:groove;
+    padding: 30px 30px;
+    border-radius: 5px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-item h3 {
+    font-size: 30px;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Carousel */
+.carousel-item img {
+    width: 100%;
+    max-height: 393px;
+    object-fit: contain;
+}
+
+.carousel-inner {
+    height: 400px;
+}
