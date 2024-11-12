@@ -18,9 +18,9 @@
                 </div>
                 <div class="d-flex flex-column align-items-center">
                     <a href="{{ url_for('main.home') }}"><img src="https://cdn-icons-png.flaticon.com/128/4548/4548184.png" alt="icon" class="img-fluid"></a>
-                    <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/4556/4556960.png" alt="icon" class="img-fluid"></a>
-                    <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/3524/3524968.png" alt="icon" class="img-fluid"></a>
-                    <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/1827/1827499.png" alt="icon" class="img-fluid"></a>
+                    <a href="{{ url_for('main.home') }}"><img src="https://cdn-icons-png.flaticon.com/128/4556/4556960.png" alt="icon" class="img-fluid"></a>
+                    <a href="{{ url_for('main.home') }}"><img src="https://cdn-icons-png.flaticon.com/128/3524/3524968.png" alt="icon" class="img-fluid"></a>
+                    <a href="{{ url_for('main.detailedData') }}"><img src="https://cdn-icons-png.flaticon.com/128/1827/1827499.png" alt="icon" class="img-fluid"></a>
                     <a href="{{ url_for('main.logout') }}"><img src="https://cdn-icons-png.flaticon.com/128/4556/4556970.png" alt="icon" class="img-fluid"></a>
                 </div>
             </div>
@@ -39,8 +39,8 @@
                         <div class="me-2">
                             <select class='slt' name="日" id="day-select"></select>
                         </div>
-                        <a href="{{ url_for('main.logout') }}" target="_blank" class="btn btn-outline-light me-2 ">查詢</a>
-                        <a href="{{ url_for('main.logout') }}" target="_blank" class="btn btn-outline-light me-2">個人設定</a>
+                        <a href="{{ url_for('main.home') }}" target="_blank" class="btn btn-outline-light me-2 ">查詢</a>
+                        <a href="{{ url_for('main.home') }}" target="_blank" class="btn btn-outline-light me-2">個人設定</a>
                         <a href="{{ url_for('main.logout') }}" target="_blank" class="btn btn-outline-light">登出</a>
                     </div>
                 </div>
@@ -53,12 +53,9 @@
                 </div>
                 <div class="category d-flex flex-wrap justify-content-around bg-custom p-1 mb-3">
                     <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">攻擊類型</a>
-                    <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">威脅級別</a>
-                    <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">高級別類別</a>
-                    <a href="{{ url_for('main.threatLevel') }}" class="btn btn-outline-light m-1">低級別類別</a>
                     <a href="{{ url_for('main.threatLevel1') }}" class="btn btn-outline-light m-1">網頁分析</a>
-                    <a href="{{ url_for('main.detailedData') }}" class="btn btn-outline-light m-1">詳細數據</a>
                     <a href="{{ url_for('main.map') }}" class="btn btn-outline-light m-1">地圖</a>
+                    <a href="{{ url_for('main.detailedData') }}" class="btn btn-outline-light m-1">詳細數據</a>
                 </div>
                 {% block content %}
                 {% endblock %}
