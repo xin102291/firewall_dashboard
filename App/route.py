@@ -94,6 +94,7 @@ def logout():
     session.clear()
     return redirect(url_for('main.index'))
 
+
 @bp.route('/verify-otp', methods=['POST'])
 def verify_otp():
     data = request.json
@@ -119,6 +120,10 @@ def verify_otp():
 @bp.route('/verify-otp')
 def verify_otp_page():
     return render_template('verify_otp.html')
+
+@bp.route('/map')
+def map_page():
+    return render_template('map.html')
 
 @bp.route('/admin/create-user', methods=['POST'])
 @admin_required
@@ -185,35 +190,6 @@ def web():
     
     return render_template('web.html', name=user.name) #將使用者名字傳給home.html使用
 
-@bp.route('/map')
-def map():    
-    user_email = session['user_email'] # 獲取使用者的電子郵件 
-    
-    user = User.query.filter_by(email=user_email).first() #查詢使用者資料 
-    
-    return render_template('map.html', name=user.name) #將使用者名字傳給home.html使用
 
 
-@bp.route('/threatLevel1')
-def threatLevel1():    
-    user_email = session['user_email'] # 獲取使用者的電子郵件 
-    #print(f"User email from session: {user_email}")  
-    
-    user = User.query.filter_by(email=user_email).first() #查詢使用者資料
-    
-    
-    #print(f"User name from database: {user.name}")  
-    
-    return render_template('threatLevel1.html', name=user.name) #將使用者名字傳給home.html使用
 
-@bp.route('/detailedData')
-def detailedData():    
-    user_email = session['user_email'] # 獲取使用者的電子郵件 
-    #print(f"User email from session: {user_email}")  
-    
-    user = User.query.filter_by(email=user_email).first() #查詢使用者資料
-    
-    
-    #print(f"User name from database: {user.name}")  
-    
-    return render_template('detailedData.html', name=user.name) #將使用者名字傳給home.html使用
