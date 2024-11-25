@@ -179,6 +179,7 @@ html * {
     white-space: nowrap; /* 防止換行 */
     border: 3px solid #ffffff;
     border-style:groove;
+    transition: background-color 0.5s ease;
 }
 
 .date .danger-index-title {
