@@ -55,3 +55,29 @@ th {
 tr:nth-child(even) {
     background-color: #444444;
 }
+
+
+/* 基本分頁按鈕樣式 */
+.page-link {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
+    background-color: #fefefe;  /* 按鈕的背景顏色 */
+    color: rgb(0, 0, 0);  /* 按鈕上的文字顏色 */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;  /* 設置圓角 */
+    font-size: 14px;
+}
+
+/* 鼠標懸停時的顏色變化 */
+.page-link:hover {
+    background-color: #697ad2;  /* 懸停時的背景顏色 */
+    color: #fff;  /* 懸停時的文字顏色 */
+}
+
+/* 當按鈕被選中時（例如當它是當前頁面） */
+.page-link.active {
+    background-color: #7b3232;  /* 當前頁面按鈕的背景顏色 */
+    color: white;
+}

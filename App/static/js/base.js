@@ -141,3 +141,56 @@ updateDateTime();
 setInterval(updateDateTime, 60000);
 formatTimestamp();
 sortUpdates();
+
+function updateDangerIndexColor() {
+    const dangerIndexValueElement = document.getElementById('dangerIndexValue');
+    const dangerIndexBoxElement = document.querySelector('.date .danger-index-box');
+    
+    // 檢查元素是否存在
+    if (!dangerIndexValueElement || !dangerIndexBoxElement) {
+        console.error('找不到必要的元素');
+        return;
+    }
+
+    // 獲取當前的危險指數值
+    const dangerIndexValueText = dangerIndexValueElement.textContent;
+    const dangerIndexValue = parseInt(dangerIndexValueText.split('/')[0]);
+    
+    console.log('當前危險指數:', dangerIndexValue);
+
+    // 根據分數設置背景顏色
+    if (dangerIndexValue >= 0 && dangerIndexValue <= 29) {
+        dangerIndexBoxElement.style.setProperty('background-color', '#2ecc71', 'important'); // 綠色
+        console.log('設置綠色');
+    } else if (dangerIndexValue >= 30 && dangerIndexValue <= 69) {
+        dangerIndexBoxElement.style.setProperty('background-color', '#f1c40f', 'important'); // 黃色
+        console.log('設置黃色');
+    } else if (dangerIndexValue >= 70 && dangerIndexValue <= 100) {
+        dangerIndexBoxElement.style.setProperty('background-color', '#e74c3c', 'important'); // 紅色
+        console.log('設置紅色');
+    }
+}
+
+// 假設你有一個函數來更新危險指數
+function updateDangerValue(newValue) {
+    const dangerIndexValueElement = document.getElementById('dangerIndexValue');
+    if (dangerIndexValueElement) {
+        dangerIndexValueElement.textContent = `${newValue}/100`;
+        updateDangerIndexColor(); // 更新完數值後立即更新顏色
+    }
+}
+
+// 當你接收到新的數據時，調用這個函數
+// 例如：
+// updateDangerValue(75);
+
+// 當DOM加載完成後執行
+/*document.addEventListener('DOMContentLoaded', function() {
+    updateDangerIndexColor();
+    
+    // 在Console中提示可用的測試命令
+    console.log('你可以使用 testDangerIndex(數值) 來測試不同的危險指數');
+    console.log('例如: testDangerIndex(25) 測試綠色');
+    console.log('例如: testDangerIndex(50) 測試黃色');
+    console.log('例如: testDangerIndex(80) 測試紅色');
+});*/

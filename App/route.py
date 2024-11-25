@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, render_template,session,redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db, mail
+from .SQL import firewall_logs
 from .SQL import User
 from flask_mail import Message
 import random
@@ -188,16 +189,26 @@ def threatLevel1():
     return render_template('threatLevel1.html', name=user.name) #將使用者名字傳給home.html使用
 
 @bp.route('/detailedData')
-def detailedData():    
-    user_email = session['user_email'] # 獲取使用者的電子郵件 
-    #print(f"User email from session: {user_email}")  
-    
-    user = User.query.filter_by(email=user_email).first() #查詢使用者資料
-    
-    
-    #print(f"User name from database: {user.name}")  
-    
-    return render_template('detailedData.html', name=user.name) #將使用者名字傳給home.html使用
+def detailedData():
+    user_email = session.get('user_email')  # 使用 get 方法以防 session 中沒有該鍵
+    if user_email:
+        user = User.query.filter_by(email=user_email).first()
+        if user:
+            # 取得頁數參數，默認為第 1 頁
+            page = request.args.get('page', 1, type=int)
+            
+            # 分頁處理：每頁顯示 10 筆資料
+            logs = firewall_logs.query.paginate(page=page, per_page=20)
+            
+            return render_template(
+                'detailedData.html', 
+                name=user.name, 
+                logs=logs.items,  # 傳遞分頁後的資料
+                pagination=logs  # 傳遞分頁資訊（例如上一頁、下一頁等）
+            )
+    return "User not found", 404  # 如果找不到用戶，返回 404
+
+
 
 @bp.route('/map')
 def map():    
