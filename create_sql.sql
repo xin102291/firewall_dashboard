@@ -14,8 +14,7 @@ CREATE TABLE IF NOT EXISTS user (
 -- 為了提高查詢效率，我們可以在 email 列上添加索引
 CREATE INDEX idx_user_email ON user(email);
 
-INSERT INTO user (name,email, password, is_first_login, is_admin) VALUES
-("Pin",'admin@example.com','placeholder', FALSE,FALSE);
-
-
-
+-- 範例管理員帳號：首次登入時會寄 OTP 到此信箱並要求設定新密碼
+-- password 欄位可先填任意字串，首次登入設定新密碼後會被覆寫
+INSERT INTO user (name, email, password, is_first_login, is_admin) VALUES
+('Admin', 'admin@example.com', 'placeholder', TRUE, TRUE);
